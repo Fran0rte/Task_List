@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card glassmorphism slide-up">
+    <div class="card-header">
+        <h1>Dashboard Login</h1>
+        <p class="subtitle">Enter the passcode to view and manage tasks.</p>
+    </div>
+    <form action="{{ url_for('dashboard') }}" method="POST" class="task-form">
+        <div class="input-group">
+            <label for="password">Passcode</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    
+    <div class="card-footer">
+        <a href="{{ url_for('index') }}" class="text-link">Back to Submit Form</a>
+    </div>
+</div>
+{% endblock %}

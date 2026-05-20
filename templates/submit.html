@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card slide-up">
+    <div class="card-header">
+        <h1>Assign a Task</h1>
+        <p class="subtitle">Got something for me to do? Let me know below.</p>
+    </div>
+    <form action="{{ url_for('submit_task') }}" method="POST" class="task-form">
+        <div class="input-group">
+            <label for="creator">Your Name</label>
+            <input type="text" id="creator" name="creator" placeholder="e.g. Jane Doe" required>
+        </div>
+        
+        <div class="input-group">
+            <label for="description">Task Description</label>
+            <textarea id="description" name="description" rows="3" placeholder="What do you need me to complete?" required></textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="due_date">Due Date (Optional)</label>
+            <input type="date" id="due_date" name="due_date">
+        </div>
+        
+        <button type="submit" class="btn btn-primary pulse-hover">Submit Task</button>
+    </form>
+    
+    <div class="card-footer">
+        <a href="{{ url_for('dashboard') }}" class="text-link">Go to Dashboard</a>
+    </div>
+</div>
+{% endblock %}

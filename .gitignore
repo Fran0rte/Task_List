@@ -1,0 +1,18 @@
+# Environments
+.venv/
+env/
+venv/
+ENV/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database
+*.db
+*.sqlite3
+tasklist.db
+
+# Environment variables
+.env

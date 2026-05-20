@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card slide-up">
+    <div class="card-header">
+        <h1>Edit Task</h1>
+        <p class="subtitle">Modify details or add notes for this task.</p>
+    </div>
+    <form action="{{ url_for('edit_task', task_id=task.id) }}" method="POST" class="task-form">
+        <div class="input-group">
+            <label for="description">Task Description</label>
+            <input type="text" id="description" name="description" value="{{ task.description }}" required>
+        </div>
+
+        <div class="input-group">
+            <label for="due_date">Due Date</label>
+            <input type="date" id="due_date" name="due_date" value="{% if task.due_date %}{{ task.due_date.strftime('%Y-%m-%d') }}{% endif %}">
+        </div>
+
+        <div class="input-group">
+            <label for="notes">Your Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Add any personal notes here...">{{ task.notes or '' }}</textarea>
+        </div>
+        
+        <div class="button-group" style="display: flex; gap: 1rem;">
+            <button type="submit" class="btn btn-primary pulse-hover">Save Changes</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary" style="text-align: center;">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
