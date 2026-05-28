@@ -3,15 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task List App</title>
+    <title>WebTask | Colorado College</title>
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                WebTask
+            </div>
+            <div class="nav-links">
+                {% if current_user.is_authenticated %}
+                    <span class="user-greeting">Hi, {{ current_user.username }}!</span>
+                    <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="btn btn-secondary btn-sm">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Sign Up</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
     <div class="app-container">
         <!-- Flash Messages -->
         {% with messages = get_flashed_messages(with_categories=true) %}
@@ -31,5 +48,8 @@
             {% block content %}{% endblock %}
         </main>
     </div>
+
+    <!-- ROCCY Mascot -->
+    <img src="{{ url_for('static', filename='img/roccy.png') }}" class="roccy-mascot" alt="ROCCY the Mascot">
 </body>
 </html>

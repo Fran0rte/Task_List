@@ -1,25 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card slide-up">
+<div class="card form-card slide-up" style="max-width: 600px; margin: 0 auto;">
     <div class="card-header">
-        <h1>Edit Task</h1>
-        <p class="subtitle">Modify details or add notes for this task.</p>
+        <h2>Edit Task</h2>
     </div>
+    
     <form action="{{ url_for('edit_task', task_id=task.id) }}" method="POST" class="task-form">
         <div class="input-group">
             <label for="description">Task Description</label>
-            <input type="text" id="description" name="description" value="{{ task.description }}" required>
+            <textarea id="description" name="description" rows="3" required>{{ task.description }}</textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="folder_id">Folder</label>
+            <select name="folder_id" id="folder_id">
+                <option value="">No Folder</option>
+                {% for folder in folders %}
+                    <option value="{{ folder.id }}" {% if task.folder_id == folder.id %}selected{% endif %}>{{ folder.name }}</option>
+                {% endfor %}
+            </select>
         </div>
 
         <div class="input-group">
             <label for="due_date">Due Date</label>
-            <input type="date" id="due_date" name="due_date" value="{% if task.due_date %}{{ task.due_date.strftime('%Y-%m-%d') }}{% endif %}">
+            <input type="date" id="due_date" name="due_date" value="{% if task.due_date %}{{ task.due_date }}{% endif %}">
         </div>
-
+        
         <div class="input-group">
-            <label for="notes">Your Notes</label>
-            <textarea id="notes" name="notes" rows="4" placeholder="Add any personal notes here...">{{ task.notes or '' }}</textarea>
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Add extra details here...">{% if task.notes %}{{ task.notes }}{% endif %}</textarea>
         </div>
         
         <div class="button-group" style="display: flex; gap: 1rem;">

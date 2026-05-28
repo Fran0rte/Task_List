@@ -3,11 +3,11 @@
 {% block content %}
 <div class="auth-card card slide-up" style="margin-top: 2rem;">
     <div class="card-header">
-        <h2 class="cc-header">Welcome Back</h2>
-        <p class="subtitle">Login to view your tasks</p>
+        <h2 class="cc-header">Create an Account</h2>
+        <p class="subtitle">Join WebTask today</p>
     </div>
     
-    <form action="{{ url_for('login') }}" method="POST">
+    <form action="{{ url_for('register') }}" method="POST">
         <div class="input-group">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
@@ -16,10 +16,10 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
     <p style="text-align: center; margin-top: 1.5rem; font-size: 0.875rem;">
-        Don't have an account? <a href="{{ url_for('register') }}" style="color: var(--cc-gold); font-weight: 700;">Sign up</a>
+        Already have an account? <a href="{{ url_for('login') }}" style="color: var(--cc-gold); font-weight: 700;">Login</a>
     </p>
 </div>
 {% endblock %}
